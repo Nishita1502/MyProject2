@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css\styles.css">
+    <title>Zara Clothing</title>
+</head>
+
+<style>
+
+/* Reset default browser styles */
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    /* Global styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+    }
+    
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    h1 {
+      font-size: 50px;
+      font-weight: 400;
+      font-style: normal;
+      margin-bottom: 10px;
+    }
+    
+    h2 {
+      font-size: 24px;
+      color: #888;
+    }
+    
+    .main-nav {
+      margin-bottom: 20px;
+    }
+    
+    .main-nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+    
+    .main-nav li {
+      margin-right: 20px;
+    }
+    
+    .main-nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    
+    .main-content {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .product-status {
+      margin-top: 20px;
+    }
+    
+    .product-status p {
+      margin-bottom: 10px;
+    }
+    
+    .product-status span {
+      font-weight: bold;
+    }
+    
+    .product-status ul {
+      margin-top: 10px;
+    }
+    
+    .main-sidebar {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 10px;
+      border-top: 1px solid #ccc;
+      color: #888;
+    }
+    
+    /* Responsive styles */
+    @media only screen and (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+      }
+    
+      .main-sidebar {
+        margin-top: 20px;
+      }
+    }</style>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Zara Clothing</h1>
+            <h2>Discover the Latest Fashion Trends</h2>
+        </header>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="https://www.zara.com/ca/en/search">Women</a></li>
+                <li><a href="https://www.zara.com/ca/en/search">Men</a></li>
+                <li><a href="https://www.zara.com/ca/en/search">Kids</a></li>
+            </ul>
+        </nav>
+
+        <main id="app" class="main-content">
+            <h1>Welcome to Zara Clothing</h1>
+            <section class="card">
+                <p>Explore our wide range of fashionable clothing and accessories. Visit our <a href="https://www.zara.com" target="_blank">official website</a> to see our latest collections.</p>
+
+                <div class="product-status">
+                    <p>
+                        Item Status:
+                        <span v-if="inStock">In Stock</span>
+                        <span v-else>Out of Stock</span>
+                    </p>
+
+                    <p v-show="inStock">
+                        <span>The item is available for pickup from our store or shipped to your address!</span>
+                    </p>
+
+                    <p v-if="inventory>10">We have a wide selection of colors and sizes available.</p>
+                    <p v-else-if="inventory<=10 && inventory>0">Hurry up, this item is almost sold out!</p>
+                    <p v-else>Out of Stock</p>
+
+                    <p v-if="inventory>0 && onSale">This item is currently on sale! Don't miss your chance.</p>
+
+                    <h3>Explore the following categories:</h3>
+                    <ul>
+                        <li v-for="category in categories">{{ category }}</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <aside class="main-sidebar">
+            <dl>
+                <dt>About Zara:</dt>
+                <dd>Zara is a leading fashion brand known for its trendy and affordable clothing.</dd>
+
+                <dt>Quality & Style:</dt>
+                <dd>Discover high-quality fabrics and the latest fashion trends.</dd>
+
+                <dt>Visit Our Stores:</dt>
+                <dd>Find a Zara store near you and experience our fashion firsthand.</dd>
+            </dl>
+        </aside>
+
+        <footer>&copy; <span id="year"></span> - Zara Clothing</footer>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        const mountedApp = app.mount('#app');
+    </script>
+</body>
+
+</html>
